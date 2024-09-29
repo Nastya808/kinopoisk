@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/spec",
+    "types": [
+      "jasmine" // Ensure you have Jasmine types available
+    ]
+  },
+  "include": [
+    "src/**/*.spec.ts", // Include test files
+    "src/**/*.d.ts"
+  ],
+  "exclude": [
+    // Exclude only the specific non-test files you want
+    "src/app/app.config.server.ts", 
+    "src/main.server.ts"
+  ]
+}

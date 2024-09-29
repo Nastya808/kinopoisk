@@ -1,0 +1,49 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <h1 class="display-4 mb-4 text-primary">КиноПоиск</h1>
+      <p class="lead text-muted mb-4">Найдите информацию о своих любимых фильмах!</p>
+      <form (ngSubmit)="searchMovie()" class="form-inline d-flex justify-content-center mb-4">
+        <input
+          type="text"
+          [(ngModel)]="movieTitle"
+          name="title"
+          class="form-control form-control-lg me-2 shadow-sm"
+          placeholder="Введите название фильма"
+          required
+        />
+        <button type="submit" class="btn btn-lg btn-primary shadow">Поиск</button>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="movie" class="movie-details mt-5">
+    <div class="card shadow-lg border-light">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            [src]="movie.Poster !== 'N/A' ? movie.Poster : 'assets/placeholder.jpg'"
+            class="img-fluid rounded-start h-100"
+            alt="{{ movie.Title }}"
+            style="object-fit: cover; border-radius: 10px 0 0 10px;"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h2 class="card-title text-primary">{{ movie.Title }}</h2>
+            <p class="card-text"><strong>Год:</strong> {{ movie.Year }}</p>
+            <p class="card-text"><strong>Рейтинг:</strong> {{ movie.imdbRating }}</p>
+            <p class="card-text"><strong>Длительность:</strong> {{ movie.Runtime }}</p>
+            <p class="card-text"><strong>Режиссер:</strong> {{ movie.Director }}</p>
+            <p class="card-text"><strong>Актеры:</strong> {{ movie.Actors }}</p>
+            <p class="card-text"><strong>Описание:</strong> {{ movie.Plot }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!movie && errorMessage" class="alert alert-danger mt-5 text-center">
+    {{ errorMessage }}
+  </div>
+</div>
